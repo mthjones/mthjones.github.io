@@ -1,0 +1,1 @@
+exclude: [bower_components, node_modules, scss, bower.json, Gemfile, Gemfile.lock, Gruntfile.js, package.json, CNAME]
