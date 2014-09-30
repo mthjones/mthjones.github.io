@@ -7,14 +7,17 @@ $baseColor: rgb(71, 116, 121);
 $linkColor: lighten($baseColor, 10%);
 
 $serif: 'PT Serif', $serif;
+$articleFontSize: $base-font-size * 1.15;
 
 .row {
   @include outer-container;
 }
 
 .large-8-centered {
-  @include span-columns(8);
-  @include shift(2);
+  @include media(769px) {
+    @include span-columns(8);
+    @include shift(2);
+  }
 }
 
 * {
@@ -22,7 +25,11 @@ $serif: 'PT Serif', $serif;
 }
 
 body {
-  padding: 2em 0;
+  padding: 1em;
+
+  @include media(769px) {
+    padding: 1em 0;
+  }
 }
 
 a {
@@ -37,6 +44,10 @@ a:hover {
 
 .post-link {
   font-size: 1.15em;
+}
+
+.post {
+  font-size: $articleFontSize;
 }
 
 h1 {
