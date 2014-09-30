@@ -1,7 +1,7 @@
-@import "../bower_components/normalize-scss/normalize";
-@import "../bower_components/bourbon/app/assets/stylesheets/bourbon";
-@import "../bower_components/bitters/app/assets/stylesheets/base";
-@import "../bower_components/neat/app/assets/stylesheets/neat";
+@import "../_vendor/normalize-scss/normalize";
+@import "../_vendor/bourbon/app/assets/stylesheets/bourbon";
+@import "../_vendor/bitters/app/assets/stylesheets/base";
+@import "../_vendor/neat/app/assets/stylesheets/neat";
 
 $base-color: rgb(71, 116, 121);
 $link-color: lighten($base-color, 10%);
