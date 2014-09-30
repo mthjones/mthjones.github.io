@@ -1,0 +1,58 @@
+---
+---
+
+@import "../_vendor/normalize-scss/normalize";
+@import "../_vendor/bourbon/app/assets/stylesheets/bourbon";
+@import "../_vendor/bitters/app/assets/stylesheets/base";
+@import "../_vendor/neat/app/assets/stylesheets/neat";
+
+$base-color: rgb(71, 116, 121);
+$link-color: lighten($base-color, 10%);
+
+$serif: 'PT Serif', $serif;
+$article-font-size: $base-font-size * 1.15;
+
+.row {
+  @include outer-container;
+}
+
+.large-8-centered {
+  @include media(769px) {
+    @include span-columns(8);
+    @include shift(2);
+  }
+}
+
+* {
+  font-family: $serif !important;
+}
+
+body {
+  padding: 1em;
+
+  @include media(769px) {
+    padding: 1em 0;
+  }
+}
+
+a {
+  color: $link-color;
+  transition: 0.25s ease-in;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: darken($link-color, 25%);
+}
+
+.post-link {
+  font-size: 1.15em;
+}
+
+.post {
+  font-size: $article-font-size;
+}
+
+h1 {
+  color: darken($base-color, 20%);
+}

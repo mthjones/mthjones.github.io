@@ -1,2 +1,5 @@
-exclude: [node_modules, scss, bower.json, Gemfile, Gemfile.lock, Gruntfile.js, package.json, CNAME]
+exclude: [node_modules, bower.json, Gemfile, Gemfile.lock, Gruntfile.js, package.json, CNAME]
 permalink: pretty
+sass:
+  style: :compressed
+  sass_dir: css
