@@ -53,6 +53,11 @@ a:hover {
   font-size: $article-font-size;
 }
 
-h1 {
-  color: darken($base-color, 20%);
+  h1 {
+    text-align: center;
+  }
+
+  hr {
+    margin: 1em auto;
+  }
 }
