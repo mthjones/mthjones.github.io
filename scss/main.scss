@@ -1,11 +1,28 @@
-@import "normalize";
-@import "foundation";
+@import "../bower_components/normalize-scss/normalize";
+@import "../bower_components/bourbon/app/assets/stylesheets/bourbon";
+@import "../bower_components/bitters/app/assets/stylesheets/base";
+@import "../bower_components/neat/app/assets/stylesheets/neat";
 
 $baseColor: rgb(71, 116, 121);
 $linkColor: lighten($baseColor, 10%);
 
+$serif: 'PT Serif', $serif;
+
+.row {
+  @include outer-container;
+}
+
+.large-8-centered {
+  @include span-columns(8);
+  @include shift(2);
+}
+
 * {
-  font-family: 'PT Serif', serif !important;
+  font-family: $serif !important;
+}
+
+body {
+  padding: 2em 0;
 }
 
 a {
@@ -19,5 +36,9 @@ a:hover {
 }
 
 .post-link {
-  font-size: 1.2em;
+  font-size: 1.15em;
+}
+
+h1 {
+  color: darken($baseColor, 20%);
 }
