@@ -8,10 +8,13 @@
 
 $base-color: rgb(71, 116, 121);
 $link-color: lighten($base-color, 10%);
+$link-hover-color: darken($link-color, 20%);
+$h1-color: darken($base-color, 10%);
 
 $serif: 'PT Serif', $serif;
 $article-font-size: $base-font-size * 1.15;
 
+/* Grid styles */
 .row {
   @include outer-container;
 }
@@ -23,6 +26,8 @@ $article-font-size: $base-font-size * 1.15;
   }
 }
 
+
+/* Global layout & styling */
 * {
   font-family: $serif !important;
 }
@@ -35,6 +40,11 @@ body {
   }
 }
 
+h1 {
+  font-family: $serif;
+  color: $h1-color;
+}
+
 a {
   color: $link-color;
   transition: 0.25s ease-in;
@@ -42,16 +52,17 @@ a {
 }
 
 a:hover {
-  color: darken($link-color, 25%);
+  color: $link-hover-color;
 }
 
 .post-link {
   font-size: 1.15em;
 }
 
+/* Post styling */
 .post {
   font-size: $article-font-size;
-}
+  font-family: $serif;
 
   h1 {
     text-align: center;
