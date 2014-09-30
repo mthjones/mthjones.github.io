@@ -1,2 +1,23 @@
 @import "normalize";
 @import "foundation";
+
+$baseColor: rgb(71, 116, 121);
+$linkColor: lighten($baseColor, 10%);
+
+* {
+  font-family: 'PT Serif', serif !important;
+}
+
+a {
+  color: $linkColor;
+  transition: 0.25s ease-in;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: darken($linkColor, 25%);
+}
+
+.post-link {
+  font-size: 1.2em;
+}
