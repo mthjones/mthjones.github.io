@@ -3,8 +3,8 @@ layout: post
 title: Hello world!
 ---
 
-{{ page.title }}
-================
+# {{ page.title }}
+***
 
 Nullam id dolor id nibh ultricies vehicula ut id elit. Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
 
