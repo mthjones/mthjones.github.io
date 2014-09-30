@@ -2,4 +2,3 @@ exclude: [node_modules, bower.json, Gemfile, Gemfile.lock, Gruntfile.js, package
 permalink: pretty
 sass:
   style: :compressed
-  sass_dir: css
