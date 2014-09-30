@@ -3,11 +3,11 @@
 @import "../bower_components/bitters/app/assets/stylesheets/base";
 @import "../bower_components/neat/app/assets/stylesheets/neat";
 
-$baseColor: rgb(71, 116, 121);
-$linkColor: lighten($baseColor, 10%);
+$base-color: rgb(71, 116, 121);
+$link-color: lighten($base-color, 10%);
 
 $serif: 'PT Serif', $serif;
-$articleFontSize: $base-font-size * 1.15;
+$article-font-size: $base-font-size * 1.15;
 
 .row {
   @include outer-container;
@@ -33,13 +33,13 @@ body {
 }
 
 a {
-  color: $linkColor;
+  color: $link-color;
   transition: 0.25s ease-in;
   text-decoration: underline;
 }
 
 a:hover {
-  color: darken($linkColor, 25%);
+  color: darken($link-color, 25%);
 }
 
 .post-link {
@@ -47,9 +47,9 @@ a:hover {
 }
 
 .post {
-  font-size: $articleFontSize;
+  font-size: $article-font-size;
 }
 
 h1 {
-  color: darken($baseColor, 20%);
+  color: darken($base-color, 20%);
 }
