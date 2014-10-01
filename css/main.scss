@@ -28,10 +28,6 @@ $article-font-size: $base-font-size * 1.15;
 }
 
 /* Global layout & styling */
-* {
-  font-family: $serif !important;
-}
-
 body {
   padding: 1em;
 
@@ -40,12 +36,15 @@ body {
   }
 }
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
   font-family: $serif;
+}
+h1 {
   color: $h1-color;
 }
 
 a {
+  font-family: $serif;
   color: $link-color;
   transition: 0.25s ease-in;
   text-decoration: underline;
@@ -61,11 +60,18 @@ a:hover {
 
 /* Post styling */
 .post {
-  font-size: $article-font-size;
-  font-family: $serif;
-
   h1 {
     text-align: center;
+    font-size: $h1-font-size * 1.15;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $serif;
+  }
+
+  p {
+    font-family: $serif;
+    font-size: $article-font-size;
   }
 
   hr {
