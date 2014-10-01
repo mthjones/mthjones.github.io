@@ -15,13 +15,59 @@ Stacks are one of the simplest data structures out there. They are, as their nam
 <figcaption><a href="https://www.flickr.com/photos/caterina83/5092814379">Pancake by Caterina Guidoni, on Flickr</a></figcaption>
 </figure>
 
- You can do only a few operations on stacks: put something on the top ([push](#stack-push)), take something off the top ([pop](#stack-pop)), or look at what's on the top ([top](#stack-top)). You can also check to see whether a stack [is empty](#stack-is-empty) or not.
+ You can do only a few operations on stacks: put something on the top, take something off the top, or look at what's on the top. You can also check to see whether a stack is empty or not.
 
-Stacks can be implemented in a few different ways, typically using either an array or a linked list. Since stacks are so simple, I'll show how both can be used.
+Stacks can be implemented in a few different ways, typically using either an array or a linked list (articles on these data structures are on the agenda). Since stacks are so simple, I'll show how both can be implemented.
+
+Since the underlying implementation has no influence on the public interface, we'll look at the interface before jumping into the implementations.
 
 {% highlight java %}
-public static void main(String[] args) {
-    System.out.println("Hello world!");
+public interface Stack<T> {
+    public T pop();
+    public void push(T value);
+    public T top();
+    public boolean isEmpty();
+}
+{% endhighlight %}
+
+That's it! Pretty simple, right? Lets dive into the implementations.
+
+### Linked List Implementation
+Let's begin with the simpler of the two implementations. We could of course "cheat" by using Java's standard library LinkedList, but that wouldn't really explain how it works.
+
+{% highlight java %}
+public class LinkedListStack<T> implements Stack<T> {
+    private class LinkedListNode<U> {
+        public LinkedListNode<U> next;
+        public U value;
+        public LinkedListNode(U value) {
+            this.value = value;
+        }
+    }
+
+    private LinkedListNode<T> stack = null;
+
+    public T pop() {
+        if (isEmpty()) throw new NoSuchElementException();
+        T value = stack.value;
+        stack = stack.next;
+        return value;
+    }
+
+    public void push(T value) {
+        LinkedListNode<T> node = new LinkedListNode<>(value);
+        node.next = stack;
+        stack = node;
+    }
+
+    public T top() {
+        if (isEmpty()) return null;
+        return stack.value;
+    }
+
+    public boolean isEmpty() {
+        return stack == null;
+    }
 }
 {% endhighlight %}
 
