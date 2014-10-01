@@ -2,3 +2,4 @@ exclude: [bower.json, Gemfile, Gemfile.lock, CNAME]
 permalink: pretty
 sass:
   style: :compressed
+highlighter: pygments
