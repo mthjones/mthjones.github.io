@@ -77,4 +77,19 @@ a:hover {
   hr {
     margin: 1em auto;
   }
+
+  .highlight {
+    margin: 0 0 1em;
+    padding: 0.5em 1em;
+    background-color: #EEEEEE;
+    font-size: $base-font-size * 0.9;
+
+    @include media(769px) {
+      margin: 0 1.5em 1em;
+    }
+
+    pre {
+      margin: 0;
+    }
+  }
 }
