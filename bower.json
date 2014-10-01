@@ -15,8 +15,8 @@
     "tests"
   ],
   "devDependencies": {
-    "bourbon": "~3.2.3",
-    "neat": "~1.5.1",
+    "bourbon": "~4.0.2",
+    "neat": "~1.6.0",
     "bitters": "~0.10.1",
     "normalize-scss": "~3.0.1"
   }
