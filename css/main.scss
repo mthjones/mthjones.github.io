@@ -58,6 +58,20 @@ a:hover {
   font-size: 1.15em;
 }
 
+.frontpage {
+  @include outer-container;
+
+  h1, h2 {
+    text-align: center;
+  }
+
+  p {
+    font-size: $article-font-size;
+    text-align: center;
+    font-family: $serif;
+  }
+}
+
 /* Post styling */
 .post {
   h1 {

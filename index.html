@@ -3,17 +3,16 @@ layout: main
 title: mthjones.com
 ---
 
-<header class="row">
-    <h1 class="large-8-centered">mthjones.com</h1>
-    <hr class="large-8-centered"/>
-</header>
+<div class="frontpage">
+    <header class="large-8-centered">
+        <h1>mthjones.com</h1>
+        <hr/>
+    </header>
 
-<div class="row">
-    <div class="large-8-centered">
-        <ul>
-            {% for post in site.posts %}
-            <li><a href="{{ post.url }}" class="post-link">{{ post.title }}</a></li>
-            {% endfor %}
-        </ul>
+    <div class="row">
+        <div class="large-8-centered">
+            <h2><a href="{{site.baseurl}}/back-to-basics/">Back to Basics</a></h2>
+            <p>Collection of articles about basic computer science concepts such as data structures and algorithms.</p>
+        </div>
     </div>
 </div>
