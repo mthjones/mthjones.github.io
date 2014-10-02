@@ -33,7 +33,7 @@ public interface Stack<T> {
 That's it! Pretty simple, right? Lets dive into the implementations.
 
 ### Linked List Implementation
-Let's begin with the simpler of the two implementations. We could of course "cheat" by using Java's standard library LinkedList, but that wouldn't really explain how it works.
+Let's begin with the simpler of the two implementations. We could of course "cheat" by using Java's [standard library LinkedList](http://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html), but that wouldn't really explain how it works.
 
 {% highlight java %}
 public class LinkedListStack<T> implements Stack<T> {
