@@ -126,6 +126,94 @@ Stacks have many potential applications. Any time you want to only access items 
 * Creating a language interpreter
 * Doing a depth-first search
 
+***
+
+## Queues
+***
+
+Queues are another fairly simple data structure that have a lot in common with stacks. The primary difference is that while stacks can only access the item that was most recently added, queues can only access the item that was least recently added (the oldest).
+
+<figure>
+<img src="https://farm3.staticflickr.com/2793/4393393907_e9db81abec_b.jpg" alt="Queuing for Space Mountain">
+<figcaption><a href="https://www.flickr.com/photos/oldpatterns/4393393907">Queuing for Space Mountain by Peter Lee, on Flickr</a></figcaption>
+</figure>
+
+Queues have only a small number of necessary operations as well. You can take the item from the front, push an item to the back, look at the front item or check if the queue is empty. Let's look at the interface:
+
+{% highlight java %}
+public interface Queue<T> {
+    public void enqueue(T value);
+    public T dequeue();
+    public T peek();
+    public boolean isEmpty();
+}
+{% endhighlight %}
+
+Queues, much like stacks, can be implemented using both arrays and linked lists. I'm only going to focus on the linked list implementation, as it is the simpler of the two.
+
+### Implementation
+***
+
+Let's just jump right into it!
+
+{% highlight java %}
+public class LinkedListQueue<T> implements Queue<T> {
+    private class DoublyLinkedListNode<U> {
+        public DoublyLinkedListNode<U> next;
+        public DoublyLinkedListNode<U> previous;
+        public U value;
+        public DoublyLinkedListNode(U value) {
+            this.value = value;
+        }
+    }
+
+    private DoublyLinkedListNode<T> queueFront;
+    private DoublyLinkedListNode<T> queueEnd;
+
+    public void enqueue(T value) {
+        DoublyLinkedListNode<T> node = new DoublyLinkedListNode<>(value);
+        if (isEmpty()) {
+            queueFront = queueEnd = node;
+        } else {
+            node.previous = queueEnd;
+            queueEnd.next = node;
+            queueEnd = node;
+        }
+    }
+
+    public T dequeue() {
+        if (isEmpty()) throw new NoSuchElementException();
+        T front = queueFront.value;
+        queueFront = queueFront.next;
+        return front;
+    }
+
+    public T peek() {
+        if (isEmpty()) return null;
+        return queueFront.value;
+    }
+
+    public boolean isEmpty() {
+        return queueFront == null;
+    }
+}
+{% endhighlight %}
+
+This implementation is a bit more difficult than the stack implementation, but that's due to wanting to reduce the running time of the operations on the queue. We use a doubly linked list for the queue which affords us constant time access to both the front and back of the queue, meaning that all operations have O(1) time complexity.
+
+### Use cases
+***
+
+Queues also have many potential applications, especially when using a more advanced type, such as a double-ended queue or a priority queue, which we'll cover later.
+
+Generally, a basic queue is a good choice when you want to access items in the same order they were added.
+
+* Job processing
+* Asynchronous data transfer
+* Doing a breadth-first search
+
+***
+
 ## What is this?
 ***
 
