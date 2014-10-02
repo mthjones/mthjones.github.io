@@ -11,10 +11,7 @@ title: "Back to Basics: Data Structures: Stacks & Queues"
 
 Stacks are one of the simplest data structures out there. They are, as their name suggests, simply a stack of items.
 
-<figure>
-<img src="https://farm5.staticflickr.com/4152/5092814379_dc34f1aaf5_b.jpg" alt="Pancake by Caterina Guidoni, on Flickr">
-<figcaption><a href="https://www.flickr.com/photos/caterina83/5092814379">Pancake by Caterina Guidoni, on Flickr</a></figcaption>
-</figure>
+{% include flickrimg.html img='https://farm5.staticflickr.com/4152/5092814379_dc34f1aaf5_b.jpg' source='caterina83/5092814379' title='Pancake by Caterina Guidoni, on Flickr' %}
 
  You can do only a few operations on stacks: put something on the top, take something off the top, or look at what's on the top. You can also check to see whether a stack is empty or not.
 
@@ -133,10 +130,7 @@ Stacks have many potential applications. Any time you want to only access items 
 
 Queues are another fairly simple data structure that have a lot in common with stacks. The primary difference is that while stacks can only access the item that was most recently added, queues can only access the item that was least recently added (the oldest).
 
-<figure>
-<img src="https://farm3.staticflickr.com/2793/4393393907_e9db81abec_b.jpg" alt="Queuing for Space Mountain">
-<figcaption><a href="https://www.flickr.com/photos/oldpatterns/4393393907">Queuing for Space Mountain by Peter Lee, on Flickr</a></figcaption>
-</figure>
+{% include flickrimg.html img='https://farm3.staticflickr.com/2793/4393393907_e9db81abec_b.jpg' source='oldpatterns/4393393907' title='Queuing for Space Mountain by Peter Lee, on Flickr' %}
 
 Queues have only a small number of necessary operations as well. You can take the item from the front, push an item to the back, look at the front item or check if the queue is empty. Let's look at the interface:
 
