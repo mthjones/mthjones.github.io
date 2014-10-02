@@ -7,6 +7,7 @@ title: "Back to Basics: Data Structures: Stacks & Queues"
 ***
 
 ## Stacks
+***
 
 Stacks are one of the simplest data structures out there. They are, as their name suggests, simply a stack of items.
 
@@ -33,6 +34,8 @@ public interface Stack<T> {
 That's it! Pretty simple, right? Lets dive into the implementations.
 
 ### Linked List Implementation
+***
+
 Let's begin with the simpler of the two implementations. We could of course "cheat" by using Java's [standard library LinkedList](http://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html), but that wouldn't really explain how it works.
 
 {% highlight java %}
@@ -71,9 +74,24 @@ public class LinkedListStack<T> implements Stack<T> {
 }
 {% endhighlight %}
 
+Not much explanation necessary here. We define a LinkedListNode class which we use to create a very simple singly-linked list and then we define a private member to hold the head of the linked list which is the top of the stack. Popping a value just removes the head of the linked list and returns it. Pushing a value creates a new linked list node with the value, then makes it the top of the stack. Checking the top of the stack just returns the value of the head. Determining if the stack is empty is as simple as checking if the top of the stack is null.
+
+The asymptotic running times of each of these is quite good. Constant time, in fact. Since the stack never needs to be traversed because the top is always a single member access away, all operations run in O(1).
+
+### Array Implementation
 ***
 
+### Use Cases
+***
+
+Stacks have many potential applications. Any time you want to only access items in a collection in the reverse order that they were placed is a good time to think about using a stack. Here are some potential uses:
+
+* Reversing something, perhaps a string
+* Tracking undo/redo operations
+
 ## What is this?
+***
+
 Now that I've graduated university, I need to prepare for my upcoming interviews. I've decided to go back and review data structures and algorithms as well as some other important concepts (such as parallelization/concurrency). The intent is to both refresh my memory on some that I may not have touched for a few years, as well as create a reference that I or other interested people can look back on.
 
 Code samples may be provided in a number of different languages. Since I'm using this to prepare for interviews, I will focus on traditional languages such as Java, Javascript, Python and C++, but don't be too surprised to see a Scala, Dart or Haskell example sneak in here or there.
