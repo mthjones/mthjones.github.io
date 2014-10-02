@@ -81,13 +81,50 @@ The asymptotic running times of each of these is quite good. Constant time, in f
 ### Array Implementation
 ***
 
+The array backed implementation is very similar to the linked list backed implementation, but it does come with the drawback of having a maximum size (although it doesn't need to).
+
+{% highlight java %}
+public class ArrayStack<T> implements Stack<T> {
+    private static int MAX_SIZE = 128;
+    private T[] stack = (T[])new Object[MAX_SIZE];
+    private int top = -1;
+
+    public T pop() {
+        if (isEmpty()) throw new NoSuchElementException();
+        top--;
+        return stack[top+1];
+    }
+
+    public void push(T value) {
+        if (top == MAX_SIZE-1) throw new StackOverflowError();
+        top++;
+        stack[top] = value;
+    }
+
+    public T top() {
+        if (isEmpty()) return null;
+        return stack[top];
+    }
+
+    public boolean isEmpty() {
+        return top == -1;
+    }
+}
+{% endhighlight %}
+
+In fact, this implementation breaks the interface provided above, as it can throw a StackOverflowError in the push method that the interface does not specify. Fixing the implementation to allow for a non-fixed array size is left as an exercise to the reader.
+
+All operations in this implementation also run in O(1). The tradeoff is in memory size. The linked list must allocate a new object for each item in the stack, which can grow to a large amount of memory use in cases where the stack is very large.
+
 ### Use Cases
 ***
 
-Stacks have many potential applications. Any time you want to only access items in a collection in the reverse order that they were placed is a good time to think about using a stack. Here are some potential uses:
+Stacks have many potential applications. Any time you want to only access items in a collection in the reverse order that they were placed, or want to rollback to a previous state is a good time to think about using a stack. Here are some potential uses:
 
 * Reversing something, perhaps a string
 * Tracking undo/redo operations
+* Creating a language interpreter
+* Doing a depth-first search
 
 ## What is this?
 ***

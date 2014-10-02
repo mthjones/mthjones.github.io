@@ -70,11 +70,17 @@ a:hover {
   }
 
   ul {
+    font-family: $serif;
     list-style: circle;
     margin-left: 2em;
+    font-size: $article-font-size;
   }
 
-  p, li {
+  ul ul {
+    font-size: $base-font-size;
+  }
+
+  p {
     font-family: $serif;
     font-size: $article-font-size;
   }
