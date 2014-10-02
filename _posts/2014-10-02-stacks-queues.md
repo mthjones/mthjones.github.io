@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Data Structures: Stacks & Queues"
+title: "Stacks & Queues"
 category: back-to-basics
 ---
 
-# Back to Basics
+# Back to Basics:
 
 # {{ page.title }}
 ***
