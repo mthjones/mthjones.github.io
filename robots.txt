@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://mthjones.com/sitemap.xml
