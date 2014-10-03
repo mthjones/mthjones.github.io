@@ -3,3 +3,5 @@ permalink: pretty
 sass:
   style: :compressed
 highlighter: pygments
+gems:
+  - jekyll-sitemap
