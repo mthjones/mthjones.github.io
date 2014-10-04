@@ -16,7 +16,7 @@ Stacks are one of the simplest data structures out there. They are, as their nam
 
 {% include flickrimg.html img='https://farm5.staticflickr.com/4152/5092814379_dc34f1aaf5_b.jpg' source='caterina83/5092814379' title='Pancake by Caterina Guidoni, on Flickr' %}
 
- You can do only a few operations on stacks: put something on the top, take something off the top, or look at what's on the top. You can also check to see whether a stack is empty or not.
+ There are only a few necessary operations on stacks: put something on the top, take something off the top, or look at what's on the top. You can also check to see whether a stack is empty or not.
 
 Stacks can be implemented in a few different ways, typically using either an array or a linked list (articles on these data structures are on the agenda). Since stacks are so simple, I'll show how both can be implemented.
 
