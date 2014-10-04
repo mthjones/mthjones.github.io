@@ -18,6 +18,8 @@ Stacks are one of the simplest data structures out there. They are, as their nam
 
  There are only a few necessary operations on stacks: put something on the top, take something off the top, or look at what's on the top. You can also check to see whether a stack is empty or not.
 
+ Some non-essential but sometimes useful operations include determining the size of the stack or determining whether an item exists in the stack. These won't be covered as they aren't something unique to or necessary for stacks and are more properties of their underlying implementations.
+
 Stacks can be implemented in a few different ways, typically using either an array or a linked list (articles on these data structures are on the agenda). Since stacks are so simple, I'll show how both can be implemented.
 
 Since the underlying implementation has no influence on the public interface, we'll look at the interface before jumping into the implementations.
