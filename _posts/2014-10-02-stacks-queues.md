@@ -157,24 +157,22 @@ Let's just jump right into it!
 
 {% highlight java %}
 public class LinkedListQueue<T> implements Queue<T> {
-    private class DoublyLinkedListNode<U> {
-        public DoublyLinkedListNode<U> next;
-        public DoublyLinkedListNode<U> previous;
+    private class LinkedListNode<U> {
+        public LinkedListNode<U> next;
         public U value;
-        public DoublyLinkedListNode(U value) {
+        public LinkedListNode(U value) {
             this.value = value;
         }
     }
 
-    private DoublyLinkedListNode<T> queueFront;
-    private DoublyLinkedListNode<T> queueEnd;
+    private LinkedListNode<T> queueFront;
+    private LinkedListNode<T> queueEnd;
 
     public void enqueue(T value) {
-        DoublyLinkedListNode<T> node = new DoublyLinkedListNode<>(value);
+        LinkedListNode<T> node = new LinkedListNode<>(value);
         if (isEmpty()) {
             queueFront = queueEnd = node;
         } else {
-            node.previous = queueEnd;
             queueEnd.next = node;
             queueEnd = node;
         }
