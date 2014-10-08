@@ -109,7 +109,7 @@ p {
     background-color: #EEEEEE;
     font-size: $base-font-size * 0.9;
 
-    @include media(769px) {
+    @include media($medium-screen) {
       margin: 0 1.5em 1em;
     }
 
