@@ -16,7 +16,8 @@ $article-font-size: $base-font-size * 1.15;
 
 /* Grid styles */
 .row {
-  @include outer-container;
+//  @include outer-container;
+//  max-width: 100%;
 }
 
 .large-8-centered {
@@ -28,14 +29,6 @@ $article-font-size: $base-font-size * 1.15;
 }
 
 /* Global layout & styling */
-body {
-  padding: 1em;
-
-  @include media(769px) {
-    padding: 1em 0;
-  }
-}
-
 h1, h2, h3, h4, h5, h6 {
   font-family: $serif;
 }
@@ -58,9 +51,7 @@ a:hover {
   font-size: 1.15em;
 }
 
-.frontpage {
-  @include outer-container;
-
+.article-collection {
   h1, h2 {
     text-align: center;
   }
@@ -125,11 +116,42 @@ a:hover {
   }
 
   h2, h3 {
-    margin-top: 1em;
+    margin: {
+      top: 1em;
+      bottom: 0.5em;
+    }
+    border-bottom: 2px solid $base-color;
+  }
+}
+
+.outer-container {
+  padding: 1em;
+
+  @include media(769px) {
+    padding: 1em 0;
   }
 
-  h2 + hr, h3 + hr {
-    margin: 0.25em 0 0.5em;
-    border-color: $base-color;
+  @include outer-container;
+  max-width: 100%;
+}
+
+.top-nav {
+  @include outer-container;
+  max-width: 100%;
+  width: 100%;
+  background-color: #222;
+  padding: 1em;
+  text-transform: uppercase;
+  font-weight: bold;
+
+  a {
+    color: whitesmoke;
+    text-decoration: none;
   }
+}
+
+.collection-title {
+  font-size: $h1-font-size;
+  border-bottom: 1px solid #DDDDDD;
+  text-align: center;
 }
