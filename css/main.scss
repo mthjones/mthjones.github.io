@@ -6,10 +6,10 @@
 @import "../_vendor/bitters/app/assets/stylesheets/base";
 @import "../_vendor/neat/app/assets/stylesheets/neat";
 
-$base-color: rgb(71, 116, 121);
+$base-color: rgb(69, 23, 101);
 $link-color: lighten($base-color, 10%);
 $link-hover-color: darken($link-color, 20%);
-$h1-color: darken($base-color, 10%);
+$h1-color: $base-color;
 
 $serif: 'PT Serif', $serif;
 $article-font-size: $base-font-size * 1.15;
@@ -146,7 +146,7 @@ main {
 .top-nav {
   @include outer-container;
   max-width: 100%;
-  background-color: #222;
+  background-color: $base-color;
 
   nav {
     @include responsive-full-width;
