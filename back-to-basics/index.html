@@ -2,75 +2,51 @@
 layout: main
 title: "Back to Basics : mthjones.com"
 ---
-<div class="row">
-    <div class="large-8-centered">
-        <a href="{{ site.baseurl }}/">&larr; Return to mthjones.com</a>
-    </div>
-</div>
+<header>
+    <h1 class="collection-title">Back to Basics</h1>
+</header>
 
-<div class="row">
-    <h1 class="large-8-centered">Back to Basics</h1>
-    <hr class="large-8-centered">
-</div>
+<section>
+    <h2>Agenda</h2>
+    <p>My goal with this article collection is to cover pretty much all of the basics of computer science eventually. Hopefully two new articles should be up per week, although some may require more time. Many of the below items will likely end up being treated as categories, as the topics are too broad.</p>
+    <ul>
+        <li>
+            Arrays & Linked Lists
+            <ul>
+                <li>Hashtables</li>
+            </ul>
+        </li>
+        <li>
+            <a href="{% post_url 2014-10-02-stacks-queues %}">Stacks & Queues</a>
+            <ul>
+                <li>Dequeues & Priority Queues</li>
+            </ul>
+        </li>
+        <li>Trees & Graphs</li>
+        <li>Sorting & Searching</li>
+        <li>Parallelism/Concurrency</li>
+        <li>
+            Object-Oriented Design
+            <ul>
+                <li>Design Patterns</li>
+            </ul>
+        </li>
+        <li>Functional Programming</li>
+        <li>Testing</li>
+        <li>
+            Specific Domains
+            <ul>
+                <li>Network Programming</li>
+                <li>Web Development</li>
+            </ul>
+        </li>
+    </ul>
+</section>
 
-<div class="row">
-    <div class="large-8-centered post">
-        {% for post in site.posts %}
-        {% if post.category == 'back-to-basics' %}
-        <div><a href="{{post.url}}" class="post-link">{{ post.title }}</a></div>
-        {% endif %}
-        {% endfor %}
-    </div>
-</div>
-
-<div class="row">
-    <div class="large-8-centered post">
-        <h2>Agenda</h2>
-        <hr>
-        <p>My goal with this article collection is to cover pretty much all of the basics of computer science eventually. Hopefully two new articles should be up per week, although some may require more time. Many of the below items will likely end up being treated as categories, as the topics are too broad.</p>
-        <ul>
-            <li>
-                Arrays & Linked Lists
-                <ul>
-                    <li>Hashtables</li>
-                </ul>
-            </li>
-            <li>
-                <a href="{% post_url 2014-10-02-stacks-queues %}">Stacks & Queues</a>
-                <ul>
-                    <li>Dequeues & Priority Queues</li>
-                </ul>
-            </li>
-            <li>Trees & Graphs</li>
-            <li>Sorting & Searching</li>
-            <li>Parallelism/Concurrency</li>
-            <li>
-                Object-Oriented Design
-                <ul>
-                    <li>Design Patterns</li>
-                </ul>
-            </li>
-            <li>Functional Programming</li>
-            <li>Testing</li>
-            <li>
-                Specific Domains
-                <ul>
-                    <li>Network Programming</li>
-                    <li>Web Development</li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-</div>
-
-<div class="row">
-    <!--<hr class="large-8-centered">-->
-    <div class="large-8-centered post">
-        <h2>What is this?</h2>
-        <hr>
-        <p>Now that I've graduated university, I need to prepare for my upcoming interviews. I've decided to go back and review data structures and algorithms as well as some other important concepts (such as parallelization/concurrency). The intent is to both refresh my memory on some that I may not have touched for a few years, as well as create a reference that I or other interested people can look back on.</p>
-        <p>Code samples may be provided in a number of different languages. Since I'm using this to prepare for interviews, I will focus on traditional languages such as Java, Javascript, Python and C++, but don't be too surprised to see a Scala, Dart or Haskell example sneak in here or there.</p>
-        <p>I also hope to include actual use cases of the topic being reviewed. Whether that's a simple demonstration I develop or just a reference to someone else's demonstration, or even a link to an open-source project that actually uses it remains to be seen.</p>
-        <p>Finally, I may (and probably will!) make mistakes. Please feel free to send your feedback to <a href="mailto:me@mthjones.com">me</a>! I will do my best to keep everything correct, but remember that I'm human!</p>
-    </div>
-</div>
+<section>
+    <h2>What is this?</h2>
+    <p>Now that I've graduated university, I need to prepare for my upcoming interviews. I've decided to go back and review data structures and algorithms as well as some other important concepts (such as parallelization/concurrency). The intent is to both refresh my memory on some that I may not have touched for a few years, as well as create a reference that I or other interested people can look back on.</p>
+    <p>Code samples may be provided in a number of different languages. Since I'm using this to prepare for interviews, I will focus on traditional languages such as Java, Javascript, Python and C++, but don't be too surprised to see a Scala, Dart or Haskell example sneak in here or there.</p>
+    <p>I also hope to include actual use cases of the topic being reviewed. Whether that's a simple demonstration I develop or just a reference to someone else's demonstration, or even a link to an open-source project that actually uses it remains to be seen.</p>
+    <p>Finally, I may (and probably will!) make mistakes. Please feel free to send your feedback to <a href="mailto:me@mthjones.com">me</a>! I will do my best to keep everything correct, but remember that I'm human!</p>
+</section>

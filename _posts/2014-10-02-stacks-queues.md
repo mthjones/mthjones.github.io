@@ -10,7 +10,6 @@ category: back-to-basics
 ***
 
 ## Stacks
-***
 
 Stacks are one of the simplest data structures out there. They are, as their name suggests, simply a stack of items.
 
@@ -36,7 +35,6 @@ public interface Stack<T> {
 That's it! Pretty simple, right? Lets dive into the implementations.
 
 ### Linked List Implementation
-***
 
 Let's begin with the simpler of the two implementations. We could of course "cheat" by using Java's [standard library LinkedList](http://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html), but that wouldn't really explain how it works.
 
@@ -81,7 +79,6 @@ Not much explanation necessary here. We define a LinkedListNode class which we u
 The asymptotic running times of each of these is quite good. Constant time, in fact. Since the stack never needs to be traversed because the top is always a single member access away, all operations run in O(1).
 
 ### Array Implementation
-***
 
 The array backed implementation is very similar to the linked list backed implementation, but it does come with the drawback of having a maximum size (although it doesn't need to).
 
@@ -119,7 +116,6 @@ In fact, this implementation breaks the interface provided above, as it can thro
 All operations in this implementation also run in O(1). The tradeoff is in memory size. The linked list must allocate a new object for each item in the stack, which can grow to a large amount of memory use in cases where the stack is very large.
 
 ### Use Cases
-***
 
 Stacks have many potential applications. Any time you want to only access items in a collection in the reverse order that they were placed, or want to rollback to a previous state is a good time to think about using a stack. Here are some potential uses:
 
@@ -131,7 +127,6 @@ Stacks have many potential applications. Any time you want to only access items 
 ***
 
 ## Queues
-***
 
 Queues are another fairly simple data structure that have a lot in common with stacks. The primary difference is that while stacks can only access the item that was most recently added, queues can only access the item that was least recently added (the oldest).
 
@@ -151,7 +146,6 @@ public interface Queue<T> {
 Queues, much like stacks, can be implemented using both arrays and linked lists. I'm only going to focus on the linked list implementation, as it is the simpler of the two.
 
 ### Implementation
-***
 
 Let's just jump right into it!
 
@@ -199,7 +193,6 @@ public class LinkedListQueue<T> implements Queue<T> {
 This implementation is a bit more difficult than the stack implementation, but that's due to wanting to reduce the running time of the operations on the queue. We use a doubly linked list for the queue which affords us constant time access to both the front and back of the queue, meaning that all operations have O(1) time complexity.
 
 ### Use cases
-***
 
 Queues also have many potential applications, especially when using a more advanced type, such as a double-ended queue or a priority queue, which we'll cover later.
 
