@@ -17,7 +17,7 @@ title: "Back to Basics : mthjones.com"
     <div class="large-8-centered post">
         {% for post in site.posts %}
         {% if post.category == 'back-to-basics' %}
-        <a href="{{post.url}}" class="post-link">{{ post.title }}</a>
+        <div><a href="{{post.url}}" class="post-link">{{ post.title }}</a></div>
         {% endif %}
         {% endfor %}
     </div>
