@@ -54,11 +54,19 @@ a:hover {
   font-size: 1.15em;
 }
 
-ul {
+ul, ol {
   font-family: $serif;
-  list-style: circle;
   margin-left: 2em;
   font-size: $article-font-size;
+  margin-bottom: 1em;
+}
+
+ul {
+  list-style: circle;
+}
+
+ol {
+  list-style: decimal;
 }
 
 ul ul {
