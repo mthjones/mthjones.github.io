@@ -1,4 +1,4 @@
 <figure>
     <img src="{{ include.img }}" alt="{{ include.title }}">
-    <figcaption>– <a href="https://www.flickr.com/photos/{{ include.source }}">{{ include.title }}</a></figcaption>
+    <figcaption>– <a href="https://www.flickr.com/photos/{{ include.source }}" target="_blank">{{ include.title }}</a> (<a href="https://creativecommons.org/licenses/{{include.cc}}/2.0/" target="_blank">CC-{{ include.cc | upcase }})</a></figcaption>
 </figure>
