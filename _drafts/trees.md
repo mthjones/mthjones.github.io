@@ -95,6 +95,38 @@ Things start to get tricky when we start trying to delete nodes from a binary se
 
 Luckily, the first two cases are trivial to implement, and the third only requires a bit of work. The fourth on the other hand can be a bit more challenging.
 
+To solve the challenge of replacing the node with two children, we'll introduce two private helper methods: one to remove an item from a given node and one to find the minimum of a given tree.
+
+{% highlight java %}
+public void remove(T item) {
+    this.root = removeFromNode(this.root, item);
+}
+
+private BinaryTreeNode<T> removeFromNode(BinaryTreeNode<T> node, T item) {
+    if (node == null) return null; // (1)
+    if (item.compareTo(node.value) < 0) {
+        node.left.root = removeFromNode(node.left.root, item);
+    } else if (item.compareTo(node.value) > 0) {
+        node.right.root = removeFromNode(node.right.root, item);
+    } else {
+        // (2, 3)
+        if (node.left.root == null) return node.right.root;
+        if (node.right.root == null) return node.left.root;
+        // (4)
+        BinaryTreeNode<T> successor = node.right.findMin();
+        node.value = successor.value;
+        node.right.root = removeFromNode(node.right.root, successor.value);
+    }
+    return node;
+}
+
+private BinaryTreeNode<T> findMin() {
+    if (this.root == null) return null;
+    if (this.root.left.root != null) return this.root.left.findMin();
+    return this.root;
+}
+{% endhighlight %}
+
 ## Red-Black Trees
 
 ## Tries
