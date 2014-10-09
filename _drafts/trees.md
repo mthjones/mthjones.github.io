@@ -69,7 +69,7 @@ public void insert(T item) {
 
 In the case of the inserted item matching an existing value, we just ignore the insertion. There are alternative approaches to inserting duplicates such as always placing them in the left or right subtree, or storing a list of the items at the node, or if the items are guaranteed to be the same, storing a counter at the node. All of these approaches introduce additional complexity that we'll avoid for now.
 
-Insertion is completed in O(lg(n)) time, as we split the tree in two each time, so we only ever need to traverse at most lg(n) items.
+Insertion is ideally completed in O(lg(n)) time, as we can halve the amount of the tree we need to work with on each iteration. However, since a binary search tree does not need to be balanced, we could end up with what is essentially a linked list of nodes, giving us a worst case of O(n) time. We'll cover how to get around this with self-balancing trees later.
 
 #### Searching
 Searching is also very simple in a binary *search* tree – go figure!
@@ -83,7 +83,7 @@ public boolean contains(T item) {
 }
 {% endhighlight %}
 
-Much like insertion, searching is done by checking the current node and then either the left or right subtree if necessary. Because of this, searching can also be completed in O(lg(n)) time.
+Much like insertion, searching is done by checking the current node and then either the left or right subtree if necessary. Because of this, searching has the same time complexity and issues as insertion does, meaning we have an ideal O(lg(n)) time, but a worst-case O(n) time.
 
 #### Deletion
 Things start to get tricky when we start trying to delete nodes from a binary search tree. There are a few cases to consider what should happen when we try to delete a node that:
