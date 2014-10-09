@@ -19,5 +19,4 @@ So, what makes a tree a tree?
 
 {% include flickrimg.html img='https://farm3.staticflickr.com/2835/10446867315_39de6e054a_b.jpg' title='Early one October morning by Nick Kenrick, on Flickr' source='zedzap/10446867315' %}
 
-Turns out the brilliant minds actually named them trees for a reason: trees branch! In your average, everyday green (or – depending on when this is being read – orange, red or...empty) tree, there are branches that split. We can think of this as there being a parent branch that has some amount of child branches. This is essentially what the tree data structure is: a hierarchical mapping of parent and child nodes.
-
+Turns out the brilliant minds actually named them trees for a reason: trees branch! In your average, everyday green (or – depending on when this is being read – orange, red or...empty) tree, there are branches that split. We can think of this as there being a parent branch that has some amount of child branches. This is essentially what the tree data structure is: a hierarchical collection of parent and child nodes.
