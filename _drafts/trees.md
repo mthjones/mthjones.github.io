@@ -185,6 +185,81 @@ public void traverse(Visitor<T> visitor) {
 }
 {% endhighlight %}
 
+### Full Implementation
+{% highlight java %}
+public class BinarySearchTree<T extends Comparable<? super T>> implements Tree<T> {
+    public void insert(T item) {
+        if (root == null) this.root = new BinaryTreeNode<>(item);
+        else if (item.compareTo(this.root.value) < 0) this.root.left.insert(item);
+        else if (item.compareTo(this.root.value) > 0) this.root.right.insert(item);
+    }
+
+    public void remove(T item) {
+        this.root = removeFromNode(this.root, item);
+    }
+
+    private BinaryTreeNode<T> removeFromNode(BinaryTreeNode<T> node, T item) {
+        if (node == null) return null; // (1)
+        if (item.compareTo(node.value) < 0) {
+            node.left.root = removeFromNode(node.left.root, item);
+        } else if (item.compareTo(node.value) > 0) {
+            node.right.root = removeFromNode(node.right.root, item);
+        } else {
+            // (2, 3)
+            if (node.left.root == null) return node.right.root;
+            if (node.right.root == null) return node.left.root;
+            // (4)
+            BinaryTreeNode<T> successor = node.right.findMin();
+            node.value = successor.value;
+            node.right.root = removeFromNode(node.right.root, successor.value);
+        }
+        return node;
+    }
+
+    private BinaryTreeNode<T> findMin() {
+        if (this.root == null) return null;
+        if (this.root.left.root != null) return this.root.left.findMin();
+        return this.root;
+    }
+
+    public boolean contains(T item) {
+        if (root == null) return false;
+        else if (item.compareTo(this.root.value) < 0) return root.left.contains(item);
+        else if (item.compareTo(this.root.value) > 0) return root.right.contains(item);
+        else return true;
+    }
+
+    public void traverse(Visitor<T> visitor) {
+        if (root == null) return;
+        if (root.left != null) root.left.traverse(visitor);
+        visitor.visit(root.value);
+        if (root.right != null) root.right.traverse(visitor);
+    }
+
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        traverse(new Visitor<T>() {
+            @Override
+            public void visit(T item) {
+                builder.append("(").append(item).append(")");
+            }
+        });
+        return builder.toString();
+    }
+
+    private class BinaryTreeNode<U extends Comparable<? super U>> {
+        public U value;
+        public BinarySearchTree<U> left = new BinarySearchTree<>();
+        public BinarySearchTree<U> right = new BinarySearchTree<>();
+        public BinaryTreeNode(U val) {
+            this.value = val;
+        }
+    }
+
+    private BinaryTreeNode<T> root;
+}
+{% endhighlight %}
+
 ## Red-Black Trees
 
 ## Tries
