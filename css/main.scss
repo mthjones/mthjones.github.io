@@ -58,7 +58,6 @@ ul, ol {
   font-family: $serif;
   margin-left: 2em;
   font-size: $article-font-size;
-  margin-bottom: 1em;
 }
 
 ul {
@@ -132,6 +131,10 @@ p {
       bottom: 0.5em;
     }
     border-bottom: 2px solid $base-color;
+  }
+
+  ul, ol {
+    margin-bottom: 1em;
   }
 }
 
