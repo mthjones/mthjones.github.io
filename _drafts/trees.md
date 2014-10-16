@@ -21,17 +21,12 @@ So, what makes a tree a tree?
 
 Turns out the brilliant minds actually named them trees for a reason: trees branch! In your average, everyday green (or – depending on when this is being read – orange, red or...empty) tree, there are branches that split. We can think of this as there being a parent branch that has some amount of child branches. This is essentially what the tree data structure is: a hierarchical collection of parent and child nodes.
 
-As simple as the concept is, there are many, many ways to represent it, each with their pros and cons and situational uses.
-
-## Binary Search Trees
-Binary search trees are the simplest tree representation. A node can have up to two children, those being the left or right child. Think of a family tree in reverse, in which instead of having two parents to a child one would have two children to a parent. Binary search trees also have a constraint that their contents must be ordered such that for any node, all items on the left subtree are less than, and all items on the right subtree are greater than.
-
-The operations on a binary search tree are like most collections: inserting an item, removing an item, searching for an item, and traversing the whole of the tree.
+Trees are a collection of items, much like an array or linked list. As a result, they share many operations with other collections – namely inserting an item, removing an item, searching for an item, and traversing the collection.
 
 So, what does the interface for a tree look like?
 
 {% highlight java %}
-public abstract class Tree<T> {
+public interface Tree<T> {
     public void insert(T item);
     public void remove(T item);
     public boolean contains(T item);
@@ -39,9 +34,14 @@ public abstract class Tree<T> {
 }
 {% endhighlight %}
 
-Note that traverse is missing a parameter. We want to pass something in to the traversal method that actually does something when we traverse the nodes, since the binary tree doesn't actually know in advance what we want to do. We'll assume there is some interface for a Visitor class that handles this task.
+Note that traverse is missing a parameter. We want to pass something in to the traversal method that actually does something when we traverse the nodes, since the tree doesn't actually know in advance what we want to do at each node. We'll assume there is some `Visitor` class that handles this task.
 
-We also use a private inner class to represent a node in the binary search tree as well.
+As simple as the concept of a tree is, there are many ways to represent it, each with their pros and cons and situational uses.
+
+## Binary Search Trees
+Binary search trees are the simplest tree representation. A node can have up to two children, those being the left or right child. Think of a family tree in reverse, in which instead of having two parents to a child one would have two children to a parent. Binary search trees also have a constraint that their contents must be ordered such that for any node, all items on the left subtree are less than, and all items on the right subtree are greater than.
+
+We use a private inner class to represent a node in the binary search tree that keeps track of its own left and right subtrees.
 
 {% highlight java %}
 private class BinaryTreeNode<U extends Comparable<? super U>> {
