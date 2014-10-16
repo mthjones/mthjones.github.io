@@ -127,6 +127,8 @@ private BinaryTreeNode<T> findMin() {
 }
 {% endhighlight %}
 
+So, a bit more complicated. However, the time complexity is no different than that of insertion and searching. Since we have to consider the worst case that the tree is essentially a linked list, the worst case takes O(n) time, but on average we can split the work to be done on each step so we end up with an O(lg(n)) average case complexity.
+
 ## Red-Black Trees
 
 ## Tries
