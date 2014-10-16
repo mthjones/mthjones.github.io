@@ -129,6 +129,62 @@ private BinaryTreeNode<T> findMin() {
 
 So, a bit more complicated. However, the time complexity is no different than that of insertion and searching. Since we have to consider the worst case that the tree is essentially a linked list, the worst case takes O(n) time, but on average we can split the work to be done on each step so we end up with an O(lg(n)) average case complexity.
 
+#### Traversal
+There are a few ways to traverse a tree, depending on which order the nodes should be visited in. Three traversal methods (in-order, pre-order and post-order) traverse the tree depth-first. Trees can also be traversed in a breadth-first manner (i.e. in levels).
+
+The three depth-first traversal methods are very simple:
+
+##### In-order
+Traverses the left-most node to the right-most node such that the visited order should be sorted according to the comparison method used for the tree.
+
+<figure>
+    <img src="http://upload.wikimedia.org/wikipedia/commons/7/77/Sorted_binary_tree_inorder.svg" alt="Sorted binary tree inorder">
+    <figcaption>Traversal order: A B C D E F G H I<br>– <a href="http://commons.wikimedia.org/wiki/File:Sorted_binary_tree_inorder.svg" target="_blank">Sorted Binary Tree Inorder</a></figcaption>
+</figure>
+
+{% highlight java %}
+public void traverse(Visitor<T> visitor) {
+    if (root == null) return;
+    if (root.left != null) root.left.traverse(visitor);
+    visitor.visit(root.value);
+    if (root.right != null) root.right.traverse(visitor);
+}
+{% endhighlight %}
+
+##### Pre-order
+Traverses the tree from the top down, in a left-to-right manner. The root will be visited first, then the left subtree will be traversed in pre-order manner, then the right subtree.
+
+<figure>
+    <img src="http://upload.wikimedia.org/wikipedia/commons/d/d4/Sorted_binary_tree_preorder.svg" alt="Sorted binary tree preorder">
+    <figcaption>Traversal order: F B A D C E G I H<br>– <a href="http://commons.wikimedia.org/wiki/File:Sorted_binary_tree_preorder.svg" target="_blank">Sorted Binary Tree Preorder</a></figcaption>
+</figure>
+
+{% highlight java %}
+public void traverse(Visitor<T> visitor) {
+    if (root == null) return;
+    visitor.visit(root.value);
+    if (root.left != null) root.left.traverse(visitor);
+    if (root.right != null) root.right.traverse(visitor);
+}
+{% endhighlight %}
+
+##### Post-order
+Traverses the tree in essentially the opposite manner of pre-order. Like pre-order, it traverses the tree from the top down, in a left-to-right manner. However, it traverses the left subtree in a post-order manner, then the right subtree, then finally visits the root node.
+
+<figure>
+    <img src="http://upload.wikimedia.org/wikipedia/commons/9/9d/Sorted_binary_tree_postorder.svg" alt="Sorted binary tree postorder">
+    <figcaption>Traversal order: A C E D B H I G F<br>– <a href="http://commons.wikimedia.org/wiki/File:Sorted_binary_tree_postorder.svg" target="_blank">Sorted Binary Tree Postorder</a></figcaption>
+</figure>
+
+{% highlight java %}
+public void traverse(Visitor<T> visitor) {
+    if (root == null) return;
+    if (root.left != null) root.left.traverse(visitor);
+    if (root.right != null) root.right.traverse(visitor);
+    visitor.visit(root.value);
+}
+{% endhighlight %}
+
 ## Red-Black Trees
 
 ## Tries
