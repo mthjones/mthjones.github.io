@@ -236,17 +236,6 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Tree<T
         if (root.right != null) root.right.traverse(visitor);
     }
 
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        traverse(new Visitor<T>() {
-            @Override
-            public void visit(T item) {
-                builder.append("(").append(item).append(")");
-            }
-        });
-        return builder.toString();
-    }
-
     private class BinaryTreeNode<U extends Comparable<? super U>> {
         public U value;
         public BinarySearchTree<U> left = new BinarySearchTree<>();
