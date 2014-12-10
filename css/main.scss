@@ -54,11 +54,18 @@ a:hover {
   font-size: 1.15em;
 }
 
-ul {
+ul, ol {
   font-family: $serif;
-  list-style: circle;
   margin-left: 2em;
   font-size: $article-font-size;
+}
+
+ul {
+  list-style: circle;
+}
+
+ol {
+  list-style: decimal;
 }
 
 ul ul {
@@ -124,6 +131,14 @@ p {
       bottom: 0.5em;
     }
     border-bottom: 2px solid $base-color;
+  }
+
+  ul, ol {
+    margin-bottom: 1em;
+  }
+
+  figcaption {
+    font-family: $serif;
   }
 }
 
