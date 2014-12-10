@@ -252,5 +252,11 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Tree<T
 ## Red-Black Trees
 Red-Black trees are a more complex variation on the basic binary tree that self-balances itself. This grants it the ability to have worst-case time complexity of O(lg(n)) for all operations, because we can no longer end up in the linked-list as a tree scenario. To change a binary search tree into a red-black tree, we need only change the operations that modify the tree: insertion and removal.
 
-## Tries
+*More coming soon...*
 
+[Wikipedia](http://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
+
+## Tries
+*Coming soon...*
+
+[Wikipedia](http://en.wikipedia.org/wiki/Trie)
