@@ -113,15 +113,15 @@ p {
   .highlight {
     margin: 0 0 1em;
     padding: 0.5em 1em;
-    background-color: #EEEEEE;
-    font-size: $base-font-size * 0.9;
+    background-color: #F3F3F3;
+    line-height: $base-line-height * 0.8;
 
     @include media($medium-screen) {
-      margin: 0 1.5em 1em;
+      margin: 0 1em 1em;
     }
 
-    pre {
-      margin: 0;
+    code {
+      font-family: 'Inconsolata', monospace;
     }
   }
 

@@ -11,3 +11,11 @@ title: Matt Jones – Blog
     {% endif %}
     {% endfor %}
 </section>
+
+<section class="article-collection">
+  {% for post in site.posts %}
+  {% if post.category != 'back-to-basics' %}
+  <div class="article-link"><a href="{{post.url}}">{{ post.title }}</a></div>
+  {% endif %}
+  {% endfor %}
+</section>

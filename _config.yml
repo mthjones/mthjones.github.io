@@ -2,6 +2,8 @@ exclude: [bower.json, Gemfile, Gemfile.lock, CNAME, README.md]
 permalink: pretty
 sass:
   style: :compressed
-highlighter: pygments
+highlighter: rouge
 gems:
   - jekyll-sitemap
+kramdown:
+  input: GFM
