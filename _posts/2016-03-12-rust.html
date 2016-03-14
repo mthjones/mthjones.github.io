@@ -1,0 +1,505 @@
+---
+layout: presentation
+title: "Why Rust? or: How I Learned to Stop Worrying and Love the Borrow Checker"
+permalink: /why-rust/
+---
+
+# Why Rust?
+
+#### or: How I Learned to Stop Worrying and Love the Borrow Checker
+
+---
+
+# About Rust
+
+* Current stable release: 1.7.0
+--
+
+* Consistent 6-week release cycle
+--
+
+* High-level low-level language
+--
+
+* All the high-level language constructs you'd expect in Python...
+--
+
+* With all the low-level speed and hardware accessibility you'd expect in C
+
+---
+
+# About Rust
+
+* Fast. <a href="http://benchmarksgame.alioth.debian.org/u64q/rust.html" target="_blank">Really fast!</a>
+--
+
+* Safe. Really safe!<sup>*</sup>
+
+<small>*: there are ways to break safety for things that require it, like direct hardware access</small>
+
+???
+
+More on how it accomplishes these in a sec.
+
+---
+
+# About Rust
+
+## Who's using it?
+
+### Companies
+* Mozilla
+* Dropbox
+* Skylight.io
+* OpenDNS
+
+### Big projects
+* Redox OS
+* Piston game engine
+* [lots more...](https://github.com/kud1ing/awesome-rust)
+
+???
+
+* Mozilla is using it to develop Servo, an experimental browser that is influencing Firefox development
+  * there is also now some Rust code in the latest versions of Firefox!
+  * <a href="https://www.youtube.com/watch?v=u0hYIRQRiws" target="_blank">Servo rendering example</a>
+* Dropbox is using it as a new storage engine for their exabyte+ block storage system
+* Skylight.io is a Ruby on Rails performance tracker
+* Redox OS is an ambitious project to build an entirely new OS using Rust
+
+---
+
+# How Rust is Fast
+
+* No garbage collection!
+
+<figure>
+  <img src="http://eivindw.github.io/assets/images/001/mem-gc-default.png" width="900">
+  <figcaption><cite><a href="http://eivindw.github.io/2016/01/08/comparing-gc-collectors.html" target="_blank">http://eivindw.github.io/2016/01/08/comparing-gc-collectors.html</a></cite></figcaption>
+</figure>
+
+???
+
+* With garbage collection, you'll often see CPU spikes when it cleans which can cause a significant performance drop
+
+---
+count: false
+
+# How Rust is Fast
+
+* No garbage collection!
+  * of course, that has its drawbacks
+  * the compiler needs to know exactly how long all objects live for so that it can clean them up at the appropriate times
+--
+
+
+* Enter lifetimes!
+  * **all** references are assigned lifetimes that look like: `'a`
+  * most of the time these lifetimes are automatically determined by the compiler and don't need to be specified
+  * there is one special lifetime: `'static`
+    * it means that the object lives for the entire duration of the program
+
+---
+
+# How Rust is Fast
+
+* Zero-cost abstractions
+
+> What you don’t use, you don’t pay for. And further: What you do use, you couldn’t hand code any better.
+<cite>Bjarne Stroustrup</cite>
+
+---
+
+# Why & How of Safety
+
+* Two important terms to know:
+--
+
+  * Aliasing: when there are multiple references to the same object in memory
+--
+
+  * Mutation: when an object in memory is able to be modified
+--
+
+* Rust allows a reference to be aliased XOR mutable
+--
+
+Example:
+
+```rust
+let mut obj = "hello world!";
+let x = &obj;
+let y = &obj;
+let z = &mut obj;  // ERROR - can't take mutable reference to an object that is immutably borrowed
+```
+
+---
+
+# Why & How of Safety
+
+<iframe width="854" height="480" src="https://www.youtube.com/embed/d1uraoHM8Gg?start=462&end=580" frameborder="0" allowfullscreen></iframe>
+
+???
+
+* I'll let Alex Chrichton, one of the Rust developers, explain why this is important.
+
+---
+
+# Why & How of Safety
+
+* The borrow checker also entirely prevents multithreading data races as well
+--
+
+* Let's walk through an example of getting multiple threads to simultaneously read and write a vector:
+  * <a href="http://is.gd/DuvwZf" target="_blank">Rust Playground</a>
+
+???
+
+Start:
+* *explain syntax if necessary*
+* Error: need to move ownership of `v` into closure
+
+After move:
+* Error: `v` needs to be used by both the main thread and the child threads
+* Try using Rc to share a reference to the object
+* `use std::rc::Rc`, `Rc::new`, `let v = v.clone()` (inside for)
+
+After Rc:
+* Oops, Rc isn't safe to send across thread boundaries
+* Arc to the rescue!
+* replace Rc with Arc
+
+After Arc:
+* Can't borrow object immutable as mutable (Arc only has an immutable reference to the object internally)
+* We need thread-safe mutability!
+* Mutexes!
+* `let v = &mut *v.lock().unwrap();`
+
+End goal: http://is.gd/oN7qS9
+
+---
+
+# Rust from a C# Perspective
+
+* `null` is a part of the type system
+  * no more unexpected `NullReferenceException`
+  * `Option<T>` instead
+
+--
+
+* Exceptions are a part of the type system
+  * no longer necessary to read documentation to know if a function can error
+  * `Result<T, E>` instead
+  * can still `panic`, but these are for true *abort* scenarios, not control flow
+
+---
+
+# Rust from a C# Perspective
+
+* Still (can be) object-oriented, but with a slightly different flavour
+  * strict separation of data (`struct`) and behaviour (`impl`)
+  * `struct`s can not inherit from each other, unlike `class`es
+
+--
+
+* `interface` &rarr; `trait`
+  * think "X can Y" instead of "X is a Y" though
+  * traits can have default fn implementations
+  * allows extending existing `struct`s with new `trait`s, like extension methods
+
+--
+
+* `namespace` &rarr; `mod`
+  * modules can have "free" functions, unlike namespaces
+
+---
+
+# Rust from a C# Perspective
+
+* `match` is like `switch` on steroids
+* `enum`s share the same name, but have several differences
+  * Rust's can be similar to C#'s
+  * ...but they can also be much more powerful
+
+```rust
+pub enum Input {
+  Keyboard(Key),
+  Mouse { left: bool, right: bool, middle: bool }
+}
+
+pub fn handle(input: Input) {
+  match input {
+    Keyboard(k) => { move_character(k); },
+    Mouse { left: true, .. } => { attack(); },
+    _ => {}
+  };
+}
+```
+
+---
+
+# Rust from a C# Perspective
+
+### C# OOP example
+
+```csharp
+public interface IShape {
+  double Area { get; }
+}
+
+public class Circle: IShape {
+  private double Radius;
+
+  public double Area {
+    get {
+      return Math.PI * Radius * Radius;
+    }
+  }
+}
+```
+
+---
+
+# Rust from a C# Perspective
+
+### Rust OOP example
+
+```rust
+pub trait HasArea {
+  fn area(&self) -> f64;
+}
+
+pub struct Circle {
+  radius: f64;
+}
+
+impl HasArea for Circle {
+  fn area(&self) -> f64 {
+    f64::consts::PI * (self.radius * self.radius)
+  }
+}
+```
+
+---
+
+# Rust from a C# Perspective
+
+### C# Exception Handling Example
+
+```csharp
+public int GetNumber() {
+  // ...
+}
+```
+
+```csharp
+Console.WriteLine(GetNumber());
+```
+
+???
+
+* Can this function fail? How can we know?
+* If only it had some documentation to read...
+
+---
+count: false
+
+# Rust from a C# Perspective
+
+### C# Exception Handling Example
+
+```csharp
+/// <summary>
+/// Gets a number or randomly fails. Good luck!
+/// </summary>
+/// <exception cref="RngException">Thrown when the odds aren't in your favor.</exception>
+public int GetNumber() {
+  // ...
+}
+```
+
+```csharp
+try {
+  Console.WriteLine(GetNumber());
+} catch(RngException e) {
+  Console.WriteLine("Failed to get number. Error: {0}", e);
+}
+```
+
+???
+
+* Oh there's documentation now! So we'll just catch RngException and we're all set!
+
+---
+count: false
+
+# Rust from a C# Perspective
+
+### C# Exception Handling Example
+
+```csharp
+/// <summary>
+/// Gets a number or randomly fails. Good luck!
+/// </summary>
+/// <exception cref="RngException">Thrown when the odds aren't in your favor.</exception>
+public int GetNumber() {
+  if (rng.Next() < 0.5) {
+    throw new ShinyNewException("unlucky");
+  }
+
+  return 4;
+}
+```
+
+```csharp
+try {
+  Console.WriteLine(GetNumber());
+} catch(RngException e) {
+  Console.WriteLine("Failed to get number. Error: {0}", e);
+}
+// boom
+```
+
+???
+
+* Good thing documentation never goes out of date, right?
+
+---
+
+# Rust from a C# Perspective
+
+### Rust Exception Handling Example
+
+```rust
+pub fn get_number() -> Result<i32, RngError> {
+  if rng.next() < 0.5 {
+    return Err(RngError("unlucky".to_owned()));
+  }
+
+  Ok(4)
+}
+```
+
+```rust
+match get_number() {
+  Ok(n) => println!("{}", n),
+  Err(m) => println!("Failed to get number. Error: {}", m),
+};
+```
+
+???
+
+How about having the code be self-documenting instead?
+
+---
+
+# Rust from a C# Perspective
+
+### C# Parameter Checking
+
+```csharp
+public string Palindromize(string s) {
+  if (s == null) {
+    throw new ArgumentNullException("...");
+  }
+
+  var reversed = string.Join( "", s.Reverse() );
+  return s + reversed;
+}
+```
+
+---
+
+# Rust from a C# Perspective
+
+### Rust Parameter Checking
+
+```rust
+pub fn palindromize(s: String) -> String {
+  let reversed = s.chars().rev().collect::<String>();
+  s + &reversed
+}
+```
+
+???
+
+Nothing to check! We know that s has a value because the compiler enforces it!
+
+---
+
+# Rust from a C# Perspective
+
+### C# Parameter Checking (optional)
+
+```csharp
+public void SayHello(string name) {
+  if (name == null) {
+    Console.WriteLine("Hello!");
+  }
+
+  Console.WriteLine("Hello, " + name + "!");
+}
+```
+
+---
+
+# Rust from a C# Perspective
+
+### Rust Parameter Checking (optional)
+
+```rust
+pub fn say_hello(name: Option<String>) {
+  match name {
+    None => println!("Hello!"),
+    Some(n) => println!("Hello, {}!", name)
+  };
+}
+```
+
+---
+
+# Rust from a C# Perspective
+
+### C# Extension Methods
+
+```csharp
+using AnotherLib.Circle;
+
+public static class CircleExtensions {
+  public static void Scale(this Circle circle, double factor) {
+    circle.Radius *= factor;
+  }
+}
+```
+
+---
+
+# Rust from a C# Perspective
+
+### Rust Trait Extending
+
+```rust
+use another_lib::Circle;
+
+pub trait Scalable {
+  fn scale(&mut self, factor: f64);
+}
+
+impl Scalable for Circle {
+  fn scale(&mut self, factor: f64) {
+    self.radius *= factor;
+  }
+}
+```
+
+---
+
+# Questions?
+
+---
+
+# References & Further Reading
+
+* [The Rust Book](https://doc.rust-lang.org/book/)
+* [Rust By Example](http://rustbyexample.com/)
+* [Why Rust?](http://www.oreilly.com/programming/free/files/why-rust.pdf)
